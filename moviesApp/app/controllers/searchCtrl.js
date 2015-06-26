@@ -1,10 +1,20 @@
+function searchCtrl($scope, $http, apiUrl, $log) {
 
-function searchCtrl($scope){
+    $scope.message = "Geef een titel op";
+    $scope.searchMovie = function (title) {
+        console.log(title);
 
-$scope.message = "Geef een titel op";
+        var url = apiUrl + 'Movies/search?title=' + title;
 
+        $http.get(url).success(function (data) {
+            $log.debug(data);
+            $scope.results = data;
+        });
 
-};
+        $log.debug('run');
+    }
+
+}
 
 angular.module('movieApp.controllers')
     .controller('searchCtrl', searchCtrl);
