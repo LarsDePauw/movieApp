@@ -3,7 +3,7 @@
 <head lang="en">
 
     <meta charset="UTF-8">
-    <title></title>
+    <title>Movie app</title>
     <link rel="stylesheet" href="lib/bootstrap.min.css" type="text/css">
     <style>
         input.ng-dirty.ng-invalid {
@@ -13,56 +13,42 @@
         input.ng-dirty.ng-valid {
             background-color: #c9e2b3;
         }
+
+        .movie.selected {
+            background-color: mediumvioletred;
+        }
     </style>
+
 </head>
-<body ng-controller="searchCtrl">
+
+<body>
 
 <div class="container">
     <h1 class="page-header">Movie App</h1>
+    <nav>
+        <ul class="nav nav-tabs">
+            <li>
+                <a href="#home">Home</a>
+            </li>
+            <li>
+                <a href="#collection">My collection</a>
+            </li>
+            <li>
+                <a href="#search">Search</a>
+            </li>
+        </ul>
 
-    <h2>{{message}}</h2>
+    </nav>
 
-    <section>
-        <form class="form-horizontal" name="searchForm" novalidate ng-submit="searchMovie(title)">
-            <div class="form-group">
-                <label class="col-md-2 control-label">
-                    title
-                </label>
-
-                <div class="col-md-10">
-                    <input type="text" class="form-control" placeholder="Title" required name="textTitle"
-                           ng-model="title" ng-minlength="2">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-10 col-md-offset-2">
-                    <button type="submit" class="btn btn-success btn-block" ng-disabled="searchForm.$invalid">
-                        Search
-                    </button>
-                </div>
-            </div>
-        </form>
-    </section>
-    <section ng-show="results">
-        <h2>Search results</h2>
-
-        <div class="row">
-            <div class="col-md-4" ng-repeat="movie in results">
-                <img src="{{movie.posterPath}}" />
-                <p>{{movie.title}}</p>
-
-            </div>
-        </div>
-    </section>
+    <div ng-view></div>
 </div>
-<script type="text/javascript" src="lib/angular.min.js">
 
-</script>
+<script type="text/javascript" src="lib/angular.min.js"></script>
+<script type="text/javascript" src="lib/angular-route.min.js"></script>
 <script type="text/javascript" src="app/controllers/controllers.js"></script>
 <script type="text/javascript" src="app/controllers/searchCtrl.js"></script>
-<script type="text/javascript" src="app/app.js">
-</script>
+<script type="text/javascript" src="app/controllers/collectionCtrl.js"></script>
+<script type="text/javascript" src="app/app.js"></script>
 
 </body>
 </html>

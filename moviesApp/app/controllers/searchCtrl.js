@@ -1,4 +1,4 @@
-function searchCtrl($scope, $http, apiUrl, $log) {
+function searchCtrl($scope, $http, apiUrl, $log, $location) {
 
     $scope.message = "Geef een titel op";
     $scope.searchMovie = function (title) {
@@ -11,10 +11,21 @@ function searchCtrl($scope, $http, apiUrl, $log) {
             $scope.results = data;
         });
 
-        $log.debug('run');
+
+    };
+    $scope.selectMovie = function (id) {
+        $scope.selectedId = id;
+    };
+
+
+    $scope.addMovie = function (id) {
+        var url = apiUrl + 'Movies/' + id;
+        $http.post(url).success(function () {
+            $location.url('/collection');
+        });
     }
-
 }
+    angular.module('movieApp.controllers')
+        .controller('searchCtrl', searchCtrl);
 
-angular.module('movieApp.controllers')
-    .controller('searchCtrl', searchCtrl);
+
