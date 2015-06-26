@@ -1,6 +1,10 @@
 
-function searchCtrl(){
-}
+function searchCtrl($scope){
 
-angular.module.('movieApp.controllers')
+$scope.message = "Geef een titel op";
+
+
+};
+
+angular.module('movieApp.controllers')
     .controller('searchCtrl', searchCtrl);
